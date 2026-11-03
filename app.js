@@ -27,6 +27,7 @@ async function bindProfile() {
 
 async function bindCard(card) {
   const repo = card.dataset.repo;
+  if (!repo) return;
   const data = await readJson(`https://api.github.com/repos/${USER}/${repo}`);
   const language = card.querySelector("[data-field='lang']");
   if (language && data.language) language.textContent = data.language;
@@ -51,7 +52,7 @@ async function bindCard(card) {
 }
 
 async function main() {
-  const cards = [...document.querySelectorAll(".manuscript")];
+  const cards = [...document.querySelectorAll(".manuscript[data-repo]")];
   const jobs = cards.map((card) => bindCard(card));
   const results = await Promise.allSettled([bindProfile(), ...jobs]);
   const failed = results.filter((result) => result.status === "rejected").length;
