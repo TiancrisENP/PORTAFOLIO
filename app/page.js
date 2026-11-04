@@ -1,3 +1,16 @@
+import {
+  siCss,
+  siExpress,
+  siFastapi,
+  siHtml5,
+  siJavascript,
+  siNestjs,
+  siNextdotjs,
+  siPostgresql,
+  siPrisma,
+  siReact,
+  siSupabase,
+} from "simple-icons";
 import { loadPortfolio } from "../lib/github";
 
 // Tiene que ser un número literal. Next.js no aplica el valor si viene de un import.
@@ -8,29 +21,29 @@ const oficios = [
     title: "Interfaces",
     body: "Pantallas en React y Next.js, y también páginas de un solo archivo cuando el encargo cabe en el navegador.",
     tools: [
-      ["Re", "React"],
-      ["Nx", "Next.js"],
-      ["Ht", "HTML"],
-      ["Cs", "CSS"],
-      ["Js", "JavaScript"],
+      [siReact, "React"],
+      [siNextdotjs, "Next.js"],
+      [siHtml5, "HTML"],
+      [siCss, "CSS"],
+      [siJavascript, "JavaScript"],
     ],
   },
   {
     title: "Sistemas",
     body: "APIs con Express y NestJS: ventas, inventario, servicio técnico, matrículas escolares, roles y auditoría.",
     tools: [
-      ["Ex", "Express"],
-      ["Ne", "NestJS"],
-      ["Fa", "FastAPI"],
+      [siExpress, "Express"],
+      [siNestjs, "NestJS"],
+      [siFastapi, "FastAPI"],
     ],
   },
   {
     title: "Datos",
     body: "PostgreSQL con Prisma, y Supabase cuando el proyecto necesita base, autenticación y archivos en el mismo taller.",
     tools: [
-      ["Pg", "PostgreSQL"],
-      ["Pr", "Prisma"],
-      ["Su", "Supabase"],
+      [siPostgresql, "PostgreSQL"],
+      [siPrisma, "Prisma"],
+      [siSupabase, "Supabase"],
     ],
   },
 ];
@@ -161,11 +174,11 @@ export default async function HomePage() {
                   <h3>{oficio.title}</h3>
                   <p>{oficio.body}</p>
                   <ul className="tools" aria-label={`Herramientas de ${oficio.title}`}>
-                    {oficio.tools.map(([mark, name]) => (
+                    {oficio.tools.map(([icon, name]) => (
                       <li key={name}>
-                        <span className="tool-mark" aria-hidden="true">
-                          {mark}
-                        </span>
+                        <svg className="tool-logo" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d={icon.path} fill={`#${icon.hex}`} />
+                        </svg>
                         {name}
                       </li>
                     ))}
