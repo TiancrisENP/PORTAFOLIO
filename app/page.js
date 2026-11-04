@@ -1,7 +1,7 @@
 import { loadPortfolio } from "../lib/github";
-import { REVALIDATE_SECONDS } from "../lib/manuscripts";
 
-export const revalidate = REVALIDATE_SECONDS;
+// Tiene que ser un número literal. Next.js no aplica el valor si viene de un import.
+export const revalidate = 300;
 
 const oficios = [
   {
