@@ -1,6 +1,7 @@
 import { loadPortfolio } from "../lib/github";
+import { REVALIDATE_SECONDS } from "../lib/manuscripts";
 
-export const revalidate = 3600;
+export const revalidate = REVALIDATE_SECONDS;
 
 const oficios = [
   {
@@ -25,11 +26,13 @@ function Manuscript({ card }) {
         <h3>{card.title}</h3>
       </header>
       <p>{card.body}</p>
-      <ul className="tags" aria-label="Tecnologías">
-        {card.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+      {card.tags.length ? (
+        <ul className="tags" aria-label="Tecnologías">
+          {card.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+      ) : null}
       {card.updated ? (
         <p className="meta">
           <span>{card.language}</span>
@@ -111,14 +114,13 @@ export default async function HomePage() {
             <h1>TiancrisENP</h1>
             <p className="motto">Lo que se forja con cuidado, perdura.</p>
             <p className="lede">
-              Cuatro obras fijadas en el perfil de GitHub. El lenguaje y la última marca de cada
-              una se leen en vivo desde la API pública, para que el manuscrito no se despegue de la
-              forja.
+              Las obras fijadas en el perfil de GitHub. El orden, el lenguaje y la última marca de
+              cada una se leen en vivo, para que el manuscrito no se despegue de la forja.
             </p>
             <dl className="tally">
               <div>
                 <dt>Pineados</dt>
-                <dd>4</dd>
+                <dd>{portfolio.manuscripts.length}</dd>
               </div>
               <div>
                 <dt>Repositorios públicos</dt>
@@ -150,8 +152,8 @@ export default async function HomePage() {
             <div className="section-head">
               <h2>Pergaminos pineados</h2>
               <p>
-                El mismo orden de peso del taller: primero los sistemas, después las piezas breves.
-                Todos están pineados en el perfil.
+                El orden es el del perfil. Al pinear o soltar un repositorio, esta lista lo recoge
+                sola.
               </p>
             </div>
             <div className="stack">
@@ -206,8 +208,8 @@ export default async function HomePage() {
             <div>
               <h2>El sello</h2>
               <p>
-                Todo el código público está en GitHub, bajo el nombre TiancrisENP. Estos cuatro
-                pergaminos son los que hoy aparecen pineados en el perfil.
+                Todo el código público está en GitHub, bajo el nombre TiancrisENP. Los pergaminos
+                de arriba son los que hoy aparecen pineados en el perfil.
               </p>
               <a
                 className="btn primary"
