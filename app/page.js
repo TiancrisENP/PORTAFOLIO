@@ -7,14 +7,31 @@ const oficios = [
   {
     title: "Interfaces",
     body: "Pantallas en React y Next.js, y también páginas de un solo archivo cuando el encargo cabe en el navegador.",
+    tools: [
+      ["Re", "React"],
+      ["Nx", "Next.js"],
+      ["Ht", "HTML"],
+      ["Cs", "CSS"],
+      ["Js", "JavaScript"],
+    ],
   },
   {
     title: "Sistemas",
     body: "APIs con Express y NestJS: ventas, inventario, servicio técnico, matrículas escolares, roles y auditoría.",
+    tools: [
+      ["Ex", "Express"],
+      ["Ne", "NestJS"],
+      ["Fa", "FastAPI"],
+    ],
   },
   {
     title: "Datos",
     body: "PostgreSQL con Prisma, y Supabase cuando el proyecto necesita base, autenticación y archivos en el mismo taller.",
+    tools: [
+      ["Pg", "PostgreSQL"],
+      ["Pr", "Prisma"],
+      ["Su", "Supabase"],
+    ],
   },
 ];
 
@@ -143,6 +160,16 @@ export default async function HomePage() {
                 <article key={oficio.title}>
                   <h3>{oficio.title}</h3>
                   <p>{oficio.body}</p>
+                  <ul className="tools" aria-label={`Herramientas de ${oficio.title}`}>
+                    {oficio.tools.map(([mark, name]) => (
+                      <li key={name}>
+                        <span className="tool-mark" aria-hidden="true">
+                          {mark}
+                        </span>
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
                 </article>
               ))}
             </div>
