@@ -12,9 +12,9 @@
   --wood-mid: #3a2618;
   --line: rgba(90, 58, 28, 0.35);
   --shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
-  --serif: "IM Fell English", Palatino, "Palatino Linotype", Georgia, serif;
-  --display: Cinzel, "Times New Roman", serif;
-  --script: MedievalSharp, Cinzel, serif;
+  --serif: var(--font-serif), Palatino, "Palatino Linotype", Georgia, serif;
+  --display: var(--font-display), "Times New Roman", serif;
+  --script: var(--font-script), Cinzel, serif;
 }
 
 * { box-sizing: border-box; }
